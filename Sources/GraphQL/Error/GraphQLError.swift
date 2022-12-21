@@ -166,7 +166,7 @@ public struct IndexPath: Codable {
 
     public init(from decoder: Decoder) throws {
         var container = try decoder.unkeyedContainer()
-        elements = try container.decode([IndexPathValue].self)
+        elements = (try? container.decode([IndexPathValue].self)) ?? []
     }
 
     public func encode(to encoder: Encoder) throws {
