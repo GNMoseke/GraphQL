@@ -118,7 +118,7 @@ public struct GraphQLError: Error, Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         message = try container.decode(String.self, forKey: .message)
-        locations = try container.decode([SourceLocation]?.self, forKey: .locations) ?? []
+        locations = (try? container.decode([SourceLocation]?.self, forKey: .locations)) ?? []
         path = try container.decode(IndexPath.self, forKey: .path)
     }
 
